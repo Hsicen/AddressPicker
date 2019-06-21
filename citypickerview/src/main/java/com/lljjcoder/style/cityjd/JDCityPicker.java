@@ -13,13 +13,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.PopupWindow;
-import android.widget.TextView;
-
+import android.widget.*;
 import com.lljjcoder.Interface.OnCityItemClickListener;
 import com.lljjcoder.bean.CityBean;
 import com.lljjcoder.bean.DistrictBean;
@@ -29,12 +23,10 @@ import com.lljjcoder.style.citylist.Toast.ToastUtils;
 import com.lljjcoder.style.citypickerview.R;
 import com.lljjcoder.utils.utils;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import static com.lljjcoder.style.cityjd.JDConst.INDEX_INVALID;
-import static com.lljjcoder.style.cityjd.JDConst.INDEX_TAB_AREA;
-import static com.lljjcoder.style.cityjd.JDConst.INDEX_TAB_CITY;
-import static com.lljjcoder.style.cityjd.JDConst.INDEX_TAB_PROVINCE;
+import static com.lljjcoder.style.cityjd.JDConst.*;
 
 /**
  * 仿京东城市选择器
@@ -260,9 +252,15 @@ public class JDCityPicker {
                     mAreaTv.setText("请选择");
                     mCityAdapter.updateSelectedPosition(position);
                     mCityAdapter.notifyDataSetChanged();
-                    mAreaAdapter = new AreaAdapter(context, cityBean.getCityList());
-                    //选中省份数据后更新市数据
-                    mHandler.sendMessage(Message.obtain(mHandler, INDEX_TAB_AREA, cityBean.getCityList()));
+
+                    ArrayList<DistrictBean> cityList = cityBean.getCityList();
+                    if (cityList != null && !cityList.isEmpty()) {
+                        mAreaAdapter = new AreaAdapter(context, cityBean.getCityList());
+                        //选中省份数据后更新市数据
+                        mHandler.sendMessage(Message.obtain(mHandler, INDEX_TAB_AREA, cityBean.getCityList()));
+                    } else {
+                        callback(null);
+                    }
                 }
                 break;
 
@@ -399,7 +397,6 @@ public class JDCityPicker {
 
         mBaseListener.onSelected(provinceBean, cityBean, districtBean);
         hidePop();
-
     }
 
     /**

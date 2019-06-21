@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 
                     @SuppressLint("SetTextI18n")
                     override fun onSelected(province: ProvinceBean?, city: CityBean?, district: DistrictBean?) {
-                        tvAddress.text = "$province  $city  $district"
+                        tvAddress.text = "${province?.name}  ${city?.name}  ${district?.name}"
                     }
                 })
             }.showCityPicker()
