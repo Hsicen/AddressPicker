@@ -8,5 +8,5 @@ package com.lljjcoder;
 
 public class Constant {
 
-    public static final String CITY_DATA = "cf_sys_city.json";
+    public static final String CITY_DATA = "china_city.json";
 }
