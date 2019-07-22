@@ -3,11 +3,11 @@ package com.hsicen.addresspicker
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.lljjcoder.Interface.OnCityItemClickListener
-import com.lljjcoder.bean.CityBean
-import com.lljjcoder.bean.DistrictBean
-import com.lljjcoder.bean.ProvinceBean
-import com.lljjcoder.style.cityjd.JDCityPicker
+import com.hsicen.Interface.OnCityItemClickListener
+import com.hsicen.bean.CityBean
+import com.hsicen.bean.DistrictBean
+import com.hsicen.bean.ProvinceBean
+import com.hsicen.style.cityjd.JDCityPicker
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**
