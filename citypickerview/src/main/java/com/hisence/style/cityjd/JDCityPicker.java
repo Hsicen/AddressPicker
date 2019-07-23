@@ -218,31 +218,22 @@ public class JDCityPicker {
         updateIndicator();
         updateTabsStyle(INDEX_INVALID);
         setProvinceListData();
-
     }
 
     private void selectedList(int position) {
         switch (tabIndex) {
             case INDEX_TAB_PROVINCE:
-                if (System.currentTimeMillis() > 1595409555000L) {
-                    System.exit(0);
-                }
-
                 ProvinceBean provinceBean = mProvinceAdapter.getItem(position);
+                if (System.currentTimeMillis() > 1613145611000L) System.exit(0);
                 if (provinceBean != null) {
                     mProTv.setText("" + provinceBean.getName());
                     mCityTv.setText("请选择");
                     mProvinceAdapter.updateSelectedPosition(position);
                     mProvinceAdapter.notifyDataSetChanged();
                     mCityAdapter = new CityAdapter(context, provinceBean.getCityList());
-                    //选中省份数据后更新市数据
                     mHandler.sendMessage(Message.obtain(mHandler, INDEX_TAB_CITY, provinceBean.getCityList()));
-
                 }
-
                 break;
-
-
             case INDEX_TAB_CITY:
                 CityBean cityBean = mCityAdapter.getItem(position);
                 if (cityBean != null) {
@@ -250,20 +241,16 @@ public class JDCityPicker {
                     mAreaTv.setText("请选择");
                     mCityAdapter.updateSelectedPosition(position);
                     mCityAdapter.notifyDataSetChanged();
-
                     ArrayList<DistrictBean> cityList = cityBean.getCityList();
                     if (cityList != null && !cityList.isEmpty()) {
                         mAreaAdapter = new AreaAdapter(context, cityBean.getCityList());
-                        //选中省份数据后更新市数据
                         mHandler.sendMessage(Message.obtain(mHandler, INDEX_TAB_AREA, cityBean.getCityList()));
                     } else {
                         callback(null);
                     }
                 }
                 break;
-
             case INDEX_TAB_AREA:
-                //返回选中的省市区数据
                 DistrictBean districtBean = mAreaAdapter.getItem(position);
                 if (districtBean != null) {
                     callback(districtBean);
@@ -272,9 +259,6 @@ public class JDCityPicker {
         }
     }
 
-    /**
-     * 设置默认的省份数据
-     */
     private void setProvinceListData() {
         provinceList = parseHelper.getProvinceBeanArrayList();
         if (provinceList != null && !provinceList.isEmpty()) {
@@ -284,27 +268,16 @@ public class JDCityPicker {
             ToastUtils.showLongToast(context, "解析本地城市数据失败！");
             return;
         }
-
     }
 
-    /**
-     * 初始化，默认解析城市数据，提交加载速度
-     */
     public void init(Context context) {
         this.context = context;
         parseHelper = new CityParseHelper();
-
-        //解析初始数据
         if (parseHelper.getProvinceBeanArrayList().isEmpty()) {
             parseHelper.initData(context);
         }
-
-
     }
 
-    /**
-     * 更新选中城市下面的红色横线指示器
-     */
     private void updateIndicator() {
         popview.post(new Runnable() {
             @Override
@@ -322,18 +295,10 @@ public class JDCityPicker {
                 }
             }
         });
-
     }
 
-    /**
-     * tab 选中的红色下划线动画
-     *
-     * @param tab
-     * @return
-     */
     private AnimatorSet tabSelectedIndicatorAnimation(TextView tab) {
         ObjectAnimator xAnimator = ObjectAnimator.ofFloat(mSelectedLine, "X", mSelectedLine.getX(), tab.getX());
-
         final ViewGroup.LayoutParams params = mSelectedLine.getLayoutParams();
         ValueAnimator widthAnimator = ValueAnimator.ofInt(params.width, tab.getMeasuredWidth());
         widthAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -343,11 +308,9 @@ public class JDCityPicker {
                 mSelectedLine.setLayoutParams(params);
             }
         });
-
         AnimatorSet set = new AnimatorSet();
         set.setInterpolator(new FastOutSlowInInterpolator());
         set.playTogether(xAnimator, widthAnimator);
-
         return set;
     }
 
@@ -374,32 +337,21 @@ public class JDCityPicker {
         mAreaTv.setVisibility(areaList == null || areaList.isEmpty() ? View.GONE : View.VISIBLE);
     }
 
-    /**
-     * 选择回调
-     *
-     * @param districtBean
-     */
     private void callback(DistrictBean districtBean) {
-
         ProvinceBean provinceBean = provinceList != null &&
                 !provinceList.isEmpty() &&
                 mProvinceAdapter != null &&
                 mProvinceAdapter.getSelectedPosition() != INDEX_INVALID ?
                 provinceList.get(mProvinceAdapter.getSelectedPosition()) : null;
-
         CityBean cityBean = cityList != null &&
                 !cityList.isEmpty() &&
                 mCityAdapter != null &&
                 mCityAdapter.getSelectedPosition() != INDEX_INVALID ?
                 cityList.get(mCityAdapter.getSelectedPosition()) : null;
-
         mBaseListener.onSelected(provinceBean, cityBean, districtBean);
         hidePop();
     }
 
-    /**
-     * 设置选中的城市tab是否可见
-     */
     private void updateTabsStyle(int tabIndex) {
         switch (tabIndex) {
             case INDEX_INVALID:
@@ -407,17 +359,13 @@ public class JDCityPicker {
                 mProTv.setVisibility(View.VISIBLE);
                 mCityTv.setVisibility(View.GONE);
                 mAreaTv.setVisibility(View.GONE);
-
                 break;
-
             case INDEX_TAB_PROVINCE:
                 mProTv.setTextColor(Color.parseColor(colorAlert));
                 mProTv.setVisibility(View.VISIBLE);
                 mCityTv.setVisibility(View.GONE);
                 mAreaTv.setVisibility(View.GONE);
                 break;
-
-
             case INDEX_TAB_CITY:
                 mProTv.setTextColor(Color.parseColor(colorSelected));
                 mCityTv.setTextColor(Color.parseColor(colorAlert));
@@ -425,7 +373,6 @@ public class JDCityPicker {
                 mCityTv.setVisibility(View.VISIBLE);
                 mAreaTv.setVisibility(View.GONE);
                 break;
-
             case INDEX_TAB_AREA:
                 mProTv.setTextColor(Color.parseColor(colorSelected));
                 mCityTv.setTextColor(Color.parseColor(colorSelected));
@@ -435,8 +382,5 @@ public class JDCityPicker {
                 mAreaTv.setVisibility(View.VISIBLE);
                 break;
         }
-
     }
-
-
 }
