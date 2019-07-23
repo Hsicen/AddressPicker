@@ -43,7 +43,7 @@
 		android:padding = "5dp"
 		>
 		
-		<com.hsicen.style.citylist.widget.CleanableEditView
+		<com.hisence.style.citylist.widget.CleanableEditView
 			android:id = "@+id/cityInputText"
 			android:layout_width = "match_parent"
 			android:layout_height = "40dp"
@@ -177,7 +177,7 @@
 			android:visibility = "gone"
 			/>
 		
-		<com.hsicen.style.citylist.sortlistview.SideBar
+		<com.hisence.style.citylist.sortlistview.SideBar
 			android:id = "@+id/sidrbar"
 			android:layout_width = "30.0dip"
 			android:layout_height = "fill_parent"
