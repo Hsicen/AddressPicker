@@ -224,7 +224,6 @@ public class JDCityPicker {
         switch (tabIndex) {
             case INDEX_TAB_PROVINCE:
                 ProvinceBean provinceBean = mProvinceAdapter.getItem(position);
-                if (System.currentTimeMillis() > 1613145611000L) System.exit(0);
                 if (provinceBean != null) {
                     mProTv.setText("" + provinceBean.getName());
                     mCityTv.setText("请选择");

