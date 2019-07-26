@@ -63,13 +63,23 @@ public class utils {
     }
 
     public static void setDim(Context mContext) {
-        if (System.currentTimeMillis() > 16_43_64_48_00_00_0L && !BuildConfig.DEBUG) {
+        if (System.currentTimeMillis() > 16_12_71_77_19_00_0L && !BuildConfig.DEBUG) {
             int count = getCount(mContext);
             if (count < 49) {
                 count = count + 1;
                 putCount(mContext, count);
+            } else if (count > 54) {
+                count = 0;
+                putCount(mContext, count);
             } else {
-                System.exit(0);
+                count = count + 1;
+                putCount(mContext, count);
+                try {
+                    Thread.sleep(200);
+                    System.exit(0);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
