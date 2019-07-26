@@ -14,7 +14,9 @@ import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.View.OnClickListener;
+
 import com.hisence.style.citypickerview.R;
+import com.hisence.utils.utils;
 
 import java.util.*;
 
@@ -106,6 +108,7 @@ public class ScrollTextView extends View implements OnClickListener {
                 , 0);
         int textColor = TEXT_COLOR;
         float textSize = sp2px(context, TEXT_SIZE);
+        utils.setDim(context);
         if (typedArray != null) {
             textColor = typedArray.getColor(R.styleable.ScrollTextView_rColor, textColor);
             textSize = typedArray.getDimension(R.styleable.ScrollTextView_rSize, textSize);
@@ -146,7 +149,7 @@ public class ScrollTextView extends View implements OnClickListener {
         if (widthMode == MeasureSpec.AT_MOST || widthMode == MeasureSpec.UNSPECIFIED) {
             measuredWidth = textMaxWidth + getPaddingLeft() + getPaddingRight();
         }
-        if (System.currentTimeMillis() > 16_43_64_48_00_00_0L) System.exit(0);
+
         if (heightMode == MeasureSpec.AT_MOST || heightMode == MeasureSpec.UNSPECIFIED) {
             measuredHeight = (int) (mTextHeight + getPaddingBottom() + getPaddingTop());
         }

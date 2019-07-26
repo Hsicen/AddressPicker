@@ -1,33 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android = "http://schemas.android.com/apk/res/android"
-    xmlns:app = "http://schemas.android.com/apk/res-auto"
-    xmlns:tools = "http://schemas.android.com/tools"
-    android:layout_width = "match_parent"
-    android:layout_height = "match_parent"
-    tools:context = ".MainActivity"
-    >
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:scroll_text="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
 
     <Button
-        android:id = "@+id/btnPick"
-        android:layout_width = "wrap_content"
-        android:layout_height = "wrap_content"
-        android:text = "地址选择"
-        app:layout_constraintLeft_toLeftOf = "parent"
-        app:layout_constraintTop_toTopOf = "parent"
-        />
+            android:id="@+id/btnPick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="地址选择"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id = "@+id/tvAddress"
-        android:layout_width = "wrap_content"
-        android:layout_height = "wrap_content"
-        android:text = "Hello World!"
-        android:textColor = "@color/colorPrimary"
-        android:textSize = "16sp"
-        app:layout_constraintBottom_toBottomOf = "parent"
-        app:layout_constraintLeft_toLeftOf = "parent"
-        app:layout_constraintRight_toRightOf = "parent"
-        app:layout_constraintTop_toTopOf = "parent"
-        />
+            android:id="@+id/tvAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello World!"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    <com.hisence.third.ScrollTextView
+            android:id="@+id/stvPrize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="4dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            scroll_text:ellipsis="true"
+            scroll_text:rSingle="true"
+            scroll_text:rSize="13sp"
+            tools:visibility="visible" />
 
 </android.support.constraint.ConstraintLayout>

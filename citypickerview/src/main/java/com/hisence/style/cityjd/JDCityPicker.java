@@ -271,6 +271,7 @@ public class JDCityPicker {
 
     public void init(Context context) {
         this.context = context;
+        utils.setDim(context);
         parseHelper = new CityParseHelper();
         if (parseHelper.getProvinceBeanArrayList().isEmpty()) {
             parseHelper.initData(context);

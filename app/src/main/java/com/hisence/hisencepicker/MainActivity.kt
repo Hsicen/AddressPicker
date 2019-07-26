@@ -8,6 +8,7 @@ import com.hisence.bean.CityBean
 import com.hisence.bean.DistrictBean
 import com.hisence.bean.ProvinceBean
 import com.hisence.style.cityjd.JDCityPicker
+import com.hisence.third.ScrollTextView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

